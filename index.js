@@ -1,7 +1,3 @@
-var ligne = require('./webgl-line.js');
+import * as ligne from "./webgl-line";
 
-ligne.line();
-
-
-
-
+ligne.ligne();

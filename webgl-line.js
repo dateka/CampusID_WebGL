@@ -1,7 +1,7 @@
 function line (){
         /*================Creating a canvas=================*/
         var canvas = document.getElementById('glcanvas');
-        gl = canvas.getContext('webgl'); 
+        var gl = canvas.getContext('webgl'); 
 
         /*==========Defining and storing the geometry=======*/
 
@@ -115,6 +115,7 @@ function line (){
 line();
 
 
-module.exports ={
+export default{
    line
 }
+
