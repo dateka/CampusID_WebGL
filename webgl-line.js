@@ -112,7 +112,7 @@ function line (){
 }
 
 
-line();
+//line();
 
 
 export default{
