@@ -21,7 +21,7 @@ function loadShader(gl, type, source) {
   }
   
 
-function drawSquare(){
+function drawSquare(positions,colorRGB){
     main();
   
   //
@@ -55,7 +55,7 @@ function drawSquare(){
   
     const fsSource = `
       void main() {
-        gl_FragColor = vec4(100.0, 25.0, 5.0, 1.0);
+        gl_FragColor = vec4(`+colorRGB[0]+`,`+colorRGB[1]+`,`+colorRGB[2]+`, `+colorRGB[3]+`);
       }
     `;
   
@@ -104,12 +104,14 @@ function drawSquare(){
   
     // Now create an array of positions for the square.
   
+    /*
     const positions = [
        1.0,  1.0,
       -1.0,  1.0,
        1.0, -1.0,
       -1.0, -1.0,
     ];
+    */
   
     // Now pass the list of positions into WebGL to build the
     // shape. We do this by creating a Float32Array from the
@@ -242,4 +244,8 @@ function drawSquare(){
   }
 
 
-  drawSquare();
+  //drawSquare();
+
+  export default{
+    drawSquare
+  }

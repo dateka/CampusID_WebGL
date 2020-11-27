@@ -22,7 +22,7 @@ function loadShader(gl, type, source) {
   }
   
 
-function drawCircle(){
+function drawCircle(positions,colorRGB){
 
     var canvas = document.getElementById("glcanvas");
     var gl = canvas.getContext("webgl");
@@ -55,7 +55,7 @@ function drawCircle(){
     varying float radius;
   
     void main() {
-      vec4 color0 = vec4(0.0, 0.0, 0.0, 0.0);
+      vec4 color0 = vec4(0.00, 0.0, 0.0, 0.0);
   
       float x = gl_FragCoord.x;
       float y = resolution[1] - gl_FragCoord.y;
@@ -65,7 +65,7 @@ function drawCircle(){
       float distance = sqrt(dx*dx + dy*dy);
   
       if ( distance < radius )
-        gl_FragColor = vec4(1.0, 0.5, 0.0, 1.0);
+        gl_FragColor = vec4(`+colorRGB[0]+`,`+colorRGB[1]+`,`+colorRGB[2]+`, `+colorRGB[3]+`);
       else 
         gl_FragColor = color0;
   
@@ -96,7 +96,7 @@ function drawCircle(){
     var ATTRIBUTES = 5;
     var j = 0;
     var data = [];
-    var circle = {x: 50, y: 50, r: 45};
+    var circle = {x:positions[0], y:positions[1], r:positions[2]};
  
     data[j++] = (circle.x - circle.r);
     data[j++] = (circle.y - circle.r);
@@ -143,4 +143,8 @@ function drawCircle(){
  }
 
 
- drawCircle();
+ //drawCircle();
+ 
+ export default{
+  drawCircle
+}

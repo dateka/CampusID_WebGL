@@ -1,4 +1,4 @@
-function line (){
+function line (vertices,colorRGB){
         /*================Creating a canvas=================*/
         var canvas = document.getElementById('glcanvas');
         var gl = canvas.getContext('webgl'); 
@@ -6,6 +6,8 @@ function line (){
         /*==========Defining and storing the geometry=======*/
 
         //Modifier les position x / y /  (diagonale) ??   et ajouter de nouvelle lignes, 2 point minimume pour créer 1 lignes
+        
+        /*
         var vertices = [
          -0.7,-0.1,0,
          -0.3,0.6,0,
@@ -14,6 +16,7 @@ function line (){
          0.3,-0.3,0,
          0.7,0.6,0
         ];
+        */
 
         // Create an empty buffer object to store the vertex buffer
         var vertex_buffer = gl.createBuffer();
@@ -51,9 +54,9 @@ function line (){
         // fragment shader source code
         var fragCode =
            'void main(void) {' +
-              ' gl_FragColor = vec4(0.0, 0.0, 0.0, 0.1);' +
+              ' gl_FragColor = vec4('+colorRGB[0]+','+colorRGB[1]+','+colorRGB[2]+', '+colorRGB[3]+');' +
            '}';
-
+           
         // Create fragment shader object
         var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
 

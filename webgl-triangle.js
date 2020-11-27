@@ -1,4 +1,4 @@
-function drawTriangle(){
+function drawTriangle(vertices,colorRGB){
     
 
     /*======= Creating a canvas =========*/
@@ -16,12 +16,13 @@ function drawTriangle(){
        0.2,0.6,0
     ]
     */
-    
+    /*
     var vertices = [
       0.0, 1.0, 0,
       -1.0, 0.0, 0,
       1.0, 0.0, 0
     ]
+    */
     
     // Create an empty buffer object
     var vertex_buffer = gl.createBuffer();
@@ -59,7 +60,7 @@ function drawTriangle(){
     // Fragment shader source code
     var fragCode =
        'void main(void) {' +
-          'gl_FragColor = vec4(255.0, 62.0, 135.0, 0.1);' +
+          'gl_FragColor = vec4('+colorRGB[0]+','+colorRGB[1]+','+colorRGB[2]+', '+colorRGB[3]+');' +
        '}';
     
     // Create fragment shader object
@@ -131,4 +132,8 @@ function drawTriangle(){
     }
 
 
-drawTriangle();
+//drawTriangle();
+
+export default{
+   drawTriangle
+}

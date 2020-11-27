@@ -283,4 +283,8 @@ function rainbowSquare(){
 }
 
 
-rainbowSquare();
+//rainbowSquare();
+
+export default{
+    rainbowSquare
+ }

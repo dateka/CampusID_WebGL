@@ -22,7 +22,7 @@ function loadShader(gl, type, source) {
   
 
 // eaiser to understand
-function drawRectangle(){
+function drawRectangle(positions,colorRGB){
     main();
   
   //
@@ -54,11 +54,13 @@ function drawRectangle(){
   
     // Fragment shader program
   
+    
     const fsSource = `
       void main() {
-        gl_FragColor = vec4(100.0, 25.0, 5.0, 1.0);
+        gl_FragColor = vec4(`+colorRGB[0]+`, `+colorRGB[1]+`, `+colorRGB[2]+`,`+colorRGB[3]+`);
       }
     `;
+    
   
     // Initialize a shader program; this is where all the lighting
     // for the vertices and so forth is established.
@@ -106,13 +108,14 @@ function drawRectangle(){
     // Now create an array of positions for the square.
   
     // x / Y
+    /*
     const positions = [
        1,  0.5,
       -1,  0.5,
        1, -0.5,
       -1., -0.5,
     ];
-  
+  */
   
    
   
@@ -248,4 +251,8 @@ function drawRectangle(){
 
 
 
-drawRectangle();
+//drawRectangle();
+
+export default{
+  drawRectangle
+}
