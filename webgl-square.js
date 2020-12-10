@@ -208,7 +208,7 @@ function drawSquare(positions,colorRGB){
   
     {
       const offset = 0;
-      const vertexCount = 4;
+      const vertexCount = 8;
       gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
     }
   }

@@ -27,8 +27,7 @@ function drawCircle(positions,colorRGB){
     var canvas = document.getElementById("glcanvas");
     var gl = canvas.getContext("webgl");
  
-    
-    
+  
     var vertexShaderNode = `
     uniform vec2 u_resolution;
     attribute vec2 a_position;

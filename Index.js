@@ -18,8 +18,7 @@ import * as Square from "./webgl-square.js";
 import * as Triangle from "./webgl-triangle.js";
 //Triangle.default.drawTriangle();
 
-const form = 'Circle';
-
+const form = 'Triangle';
 
 switch (form) {
   case 'Circle':
@@ -30,6 +29,7 @@ switch (form) {
 
     Circle.default.drawCircle(positions,colorRGB);
 
+  
     break;
 
   case 'Line':
@@ -49,6 +49,9 @@ switch (form) {
     break;
 
   case 'Square':
+
+
+
     var positions = [
       1.0,  1.0,
      -1.0,  1.0,
@@ -59,6 +62,9 @@ switch (form) {
    var colorRGB = [100.0, 25.0, 5.0, 1.0];
 
     Square.default.drawSquare(positions,colorRGB);
+
+    
+
 
     break;
 
