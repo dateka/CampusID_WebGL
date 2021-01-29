@@ -11,19 +11,18 @@
                 var image = new Image();
                 image.src = "intro.jpg";
                 image.onload = function() {
-                    render(image, 0.3, 0.5);
+                    render(image, 500, 900, 400, 150, 0.3, 0.5);
                 }
 
                 var image2 = new Image();
                 image2.src = "new.jpg";
                 image2.onload = function() {
-                    render(image2, 0.5, 1.0);
+                    render(image2, 400, 700, 80, 100, 0.5, 1.0);
                 }
             }
 
-            const alpha_u = gl.getUniformLocation(program, "alpha_u");
             
-            function render(image, Zaxis, Opacity) {
+            function render(image, width, height, Xaxis, Yaxis, Zaxis, Opacity) {
                 // Get A WebGL context
                 var canvas = document.getElementById("canvas");
                 var gl = getWebGLContext(canvas);
@@ -38,7 +37,8 @@
                 // look up where the vertex data needs to go.
                 var positionLocation = gl.getAttribLocation(program, "a_position");
                 var texCoordLocation = gl.getAttribLocation(program, "a_texCoord");
-                
+                const alpha_u = gl.getUniformLocation(program, "alpha_u");
+
                 // provide texture coordinates for the rectangle.
                 var texCoordBuffer = gl.createBuffer();
                 gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
@@ -69,7 +69,9 @@
                 // lookup uniforms
                 var resolutionLocation = gl.getUniformLocation(program, "u_resolution");
 
-                gl.setUniform1fv(alpha_u, 0.5);
+                // set opacity on the image
+                // 1.0 = no opacity    0.0 = opacity 100%
+                gl.uniform1f(alpha_u, Opacity);
                 
                 // set the resolution
                 gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
@@ -81,13 +83,13 @@
                 gl.vertexAttribPointer(positionLocation, 3, gl.FLOAT, false, 0, 0);
                 
                 // Set a rectangle the same size as the image.
-                setRectangle(gl, 250, 100, image.width, image.height, Zaxis); // pos X et Y
-                //               this is the depth, higher is farther ^^
+                setRectangle(gl, Xaxis, Yaxis, width, height, Zaxis);
+                //          this is the depth, higher is farther ^^
                 // NOTE: the same way that x and y can only be seen between -1 and 1, z also cannot 
                 // be seen if greater than -1 and 1
                 
                 // in order for "things in front" to be drawn over "things behind", 
-                // we have to enable the depth test.
+                // enable the depth test.
                 gl.enable(gl.DEPTH_TEST); 
                 gl.enable(gl.BLEND);
                 gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_ALPHA); 
